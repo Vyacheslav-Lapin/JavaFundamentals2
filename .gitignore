@@ -8,4 +8,6 @@
 # IDEA & Eclipse
 *.iml
 .idea
-\out
+/out
+/target
+.gradle
