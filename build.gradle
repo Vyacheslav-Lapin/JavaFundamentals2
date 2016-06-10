@@ -1,5 +1,5 @@
 subprojects {
-    group 'ru.vlapin'
+    group 'com.epam.courses'
     version '1.0-SNAPSHOT'
 
     apply plugin: "java"
