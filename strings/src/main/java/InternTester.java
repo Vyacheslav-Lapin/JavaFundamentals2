@@ -10,7 +10,6 @@ public class InternTester {
         System.out.println("s1 == s2? " + (s1 == s2)); // false
         System.out.println("s1 == s3? " + (s1 == s3)); // true
 
-
         String hello = "Hello";
         String lo = "lo";
 

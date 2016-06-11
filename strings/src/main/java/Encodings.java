@@ -20,6 +20,6 @@ public class Encodings {
 
         System.out.println(new String(strCP866));
         System.out.println(new String(strCP866, "cp866"));
-        System.out.println(new String(strCP1251));
+        System.out.println(new String(strCP1251, "cp1251"));
     }
 }
