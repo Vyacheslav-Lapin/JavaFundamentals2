@@ -7,8 +7,10 @@ public class StringCreation {
         char[] data1 = { 'a', 'b', 'c', 'd', 'e', 'f' };
         System.out.println(new String(data1, 2, 3)); // "cde"
 
-        char[] data2 = { '\u004A', '\u0061', 'V', 'A' };
+        char[] data2 = { '\u004A', '\u0041', '\u0056', '\u0041' };
         System.out.println(new String(data2)); // "JaVA"
+
+//        System.out.println(Integer.toHexString(0 + 'A'));
 
         byte ascii[] = { 65, 66, 67, 68, 69, 70 };
         System.out.println(new String(ascii)); // ”ABCDEF”

@@ -10,6 +10,8 @@ public class UnicodeDemo {
         char ch = '现';// Unicode code - 73b0; utf8 - E7 8E B0
         String str = "现";
 
+        System.out.println(Integer.toHexString(0 + '现'));
+
         System.out.println("String size = " + str.getBytes().length); // 3
         System.out.println(ch); // 现
         System.out.println(str); // 现

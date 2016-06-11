@@ -9,5 +9,8 @@
 *.iml
 .idea
 /out
-/target
+
+# Gradle & Maven
+target
+build
 .gradle
