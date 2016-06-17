@@ -17,6 +17,7 @@ public class PersonSerializationTest {
 
         Person ted = new Person("Ted", "Neward", 39);
         Person charl = new Person("Charlotte", "Neward", 38);
+
         ted.setSpouse(charl);
         charl.setSpouse(ted);
 
@@ -35,6 +36,7 @@ public class PersonSerializationTest {
     @After
     public void cleanup() {
         // Clean up the file
-        new File(FILE_NAME).delete();
+        if (!new File(FILE_NAME).delete())
+            throw new RuntimeException("Test file wasn`t deleted!");
     }
 }
