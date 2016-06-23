@@ -6,4 +6,5 @@ include 'core',
         'strings',
         'io',
         'exceptions',
-        'collections'
+        'collections',
+        'threads'
