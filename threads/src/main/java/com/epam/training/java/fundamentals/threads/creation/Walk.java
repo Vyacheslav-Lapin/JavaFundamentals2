@@ -1,3 +1,5 @@
+package com.epam.training.java.fundamentals.threads.creation;
+
 public class Walk implements Runnable {
     @Override
     public void run() {

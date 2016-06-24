@@ -1,5 +1,7 @@
 public class NewThread implements Runnable {
+
     private Thread t;
+
     public NewThread(String threadName) {
         t = new Thread(this, threadName);
         System.out.println("New thread: " + t);

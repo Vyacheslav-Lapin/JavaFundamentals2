@@ -1,3 +1,5 @@
+package com.epam.training.java.fundamentals.threads.creation;
+
 public class ThreadDemo {
     public static void main(String[] args) {
         Talk talk  = new Talk();
@@ -5,7 +7,7 @@ public class ThreadDemo {
         talk.start();
         walk.start();
 
-        //Walk w = new Walk(); // просто объект, не поток
+        //com.epam.training.java.fundamentals.threads.creation.Walk w = new com.epam.training.java.fundamentals.threads.creation.Walk(); // просто объект, не поток
         // w.run(); //выполнится метод, но поток не запустится!
     }
 }

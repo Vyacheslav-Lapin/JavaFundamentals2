@@ -1,4 +1,4 @@
-public class GetStateDemo implements Runnable {
+public class GetState implements Runnable {
 
     @Override
     public void run() {
@@ -9,7 +9,7 @@ public class GetStateDemo implements Runnable {
     }
 
     public static void main(String[] args) {
-        Thread th1 = new Thread(new GetStateDemo());
+        Thread th1 = new Thread(new GetState());
         th1.start();
         try {
             Thread.sleep(1000);

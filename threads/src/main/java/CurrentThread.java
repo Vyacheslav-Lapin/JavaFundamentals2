@@ -1,4 +1,4 @@
-public class CurrentThreadDemo {
+public class CurrentThread {
     public static void main(String[] args) {
         Thread t = Thread.currentThread();
         System.out.println("Текущий поток: " + t);

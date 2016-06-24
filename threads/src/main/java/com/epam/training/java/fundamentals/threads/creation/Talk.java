@@ -1,3 +1,5 @@
+package com.epam.training.java.fundamentals.threads.creation;
+
 public class Talk extends Thread {
     @Override
     public void run() {

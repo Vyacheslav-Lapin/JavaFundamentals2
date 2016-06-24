@@ -1,4 +1,4 @@
-public class ThreadPriorityDemo extends Thread {
+public class ThreadPriority extends Thread {
     int click = 0;
     private volatile boolean running = true;
 
@@ -15,8 +15,8 @@ public class ThreadPriorityDemo extends Thread {
 
     public static void main(String[] args) {
         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-        ThreadPriorityDemo hi = new ThreadPriorityDemo();
-        ThreadPriorityDemo lo = new ThreadPriorityDemo();
+        ThreadPriority hi = new ThreadPriority();
+        ThreadPriority lo = new ThreadPriority();
 
         hi.setPriority(Thread.NORM_PRIORITY + 2);
         lo.setPriority(Thread.NORM_PRIORITY - 2);
