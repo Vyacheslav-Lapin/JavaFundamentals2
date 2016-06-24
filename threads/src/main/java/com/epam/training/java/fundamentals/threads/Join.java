@@ -1,3 +1,5 @@
+package com.epam.training.java.fundamentals.threads;
+
 public class Join implements Runnable {
 
     private Thread t;

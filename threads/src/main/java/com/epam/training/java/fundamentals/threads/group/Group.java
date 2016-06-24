@@ -1,3 +1,5 @@
+package com.epam.training.java.fundamentals.threads.group;
+
 public class Group extends Thread {
 
     public Group(String threadname, ThreadGroup tgOb) {

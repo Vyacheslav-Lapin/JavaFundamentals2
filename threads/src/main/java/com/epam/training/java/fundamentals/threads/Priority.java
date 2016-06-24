@@ -1,3 +1,5 @@
+package com.epam.training.java.fundamentals.threads;
+
 public class Priority extends Thread {
     int click = 0;
     private volatile boolean running = true;

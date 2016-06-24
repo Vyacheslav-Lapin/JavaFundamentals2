@@ -1,3 +1,5 @@
+package com.epam.training.java.fundamentals.threads;
+
 public class CurrentThread {
     public static void main(String[] args) {
         Thread t = Thread.currentThread();

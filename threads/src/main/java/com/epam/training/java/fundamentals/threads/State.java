@@ -1,3 +1,5 @@
+package com.epam.training.java.fundamentals.threads;
+
 public class State implements Runnable {
 
     @Override
