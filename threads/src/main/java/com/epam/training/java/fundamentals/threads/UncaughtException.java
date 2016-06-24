@@ -5,7 +5,7 @@ public class UncaughtException {
     public static void main(String[] args) {
 
         Thread t = new Thread(() -> {
-            throw new RuntimeException("It is a greate exception.");
+            throw new RuntimeException("It is a great exception.");
         });
 
         t.setUncaughtExceptionHandler(
