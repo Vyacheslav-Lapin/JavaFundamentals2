@@ -1,4 +1,4 @@
-public class DaemonThread extends Thread {
+public class Daemon extends Thread {
     @Override
     public void run() {
         for(int i=0;i<10; i++) {
@@ -13,7 +13,7 @@ public class DaemonThread extends Thread {
 
     public static void main(String[] args) {
         System.out.println("Start main thread.");
-        DaemonThread daemon = new DaemonThread();
+        Daemon daemon = new Daemon();
         daemon.setDaemon(true);
         daemon.start();
 

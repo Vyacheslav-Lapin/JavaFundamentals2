@@ -1,8 +1,8 @@
-public class NewThread implements Runnable {
+public class Join implements Runnable {
 
     private Thread t;
 
-    public NewThread(String threadName) {
+    public Join(String threadName) {
         t = new Thread(this, threadName);
         System.out.println("New thread: " + t);
         t.start(); // Start the thread
@@ -13,7 +13,7 @@ public class NewThread implements Runnable {
         try {
             for (int i = 5; i > 0; i--) {
                 System.out.println(t.getName() + ": " + i);
-                Thread.sleep(1000);
+                Thread.sleep(1_000);
             }
         } catch (InterruptedException e) {
             System.out.println(t.getName() + " interrupted.");
@@ -22,9 +22,9 @@ public class NewThread implements Runnable {
     }
 
     public static void main(String[] args) {
-        NewThread ob1 = new NewThread("One");
-        NewThread ob2 = new NewThread("Two");
-        NewThread ob3 = new NewThread("Three");
+        Join ob1 = new Join("One");
+        Join ob2 = new Join("Two");
+        Join ob3 = new Join("Three");
 
         System.out.println("Thread One is alive: " + ob1.t.isAlive());
         System.out.println("Thread Two is alive: " + ob2.t.isAlive());
