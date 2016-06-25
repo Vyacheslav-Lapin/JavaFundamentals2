@@ -20,7 +20,7 @@ public class SyncAccount implements Account {
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println(
-                new SimpleAccount(200)
+                new SyncAccount(200)
                         .getOperationsResult());
     }
 }
