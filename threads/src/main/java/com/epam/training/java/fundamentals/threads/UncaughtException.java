@@ -9,7 +9,7 @@ public class UncaughtException {
         });
 
         t.setUncaughtExceptionHandler(
-                (t1, e) -> System.out.println(t + " throws exception: " + e)
+                (t1, e) -> System.out.println(t1 + " throws exception: " + e)
         );
 
         t.start();
