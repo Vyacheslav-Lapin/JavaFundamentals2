@@ -2,13 +2,13 @@ package com.epam.training.java.fundamentals.threads.synchronization;
 
 import lombok.AllArgsConstructor;
 
+@SuppressWarnings("WeakerAccess")
 @AllArgsConstructor
-public class OperatorDeposit extends Thread {
+public class DepositOperator implements Operator {
     private Account account;
 
     @Override
-    public void run() {
-        for(int i=0; i<5; i++)
-            account.deposit(100);
+    public void operation() {
+        account.deposit(100);
     }
 }

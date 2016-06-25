@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class SimpleAccount implements Account {
+public class NotThreadSafeAccount implements Account {
+
     private int balance;
 
     @Override
@@ -19,8 +20,11 @@ public class SimpleAccount implements Account {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        //noinspection unchecked
         System.out.println(
-                new SimpleAccount(200)
-                        .getOperationsResult());
+                new NotThreadSafeAccount(200)
+                        .getOperationsResult(
+                                ThreadSafeDepositOperator::new,
+                                ThreadSafeWithdrawOperator::new));
     }
 }

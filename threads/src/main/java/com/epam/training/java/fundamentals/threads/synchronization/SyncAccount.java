@@ -19,8 +19,9 @@ public class SyncAccount implements Account {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        //noinspection unchecked
         System.out.println(
                 new SyncAccount(200)
-                        .getOperationsResult());
+                        .getOperationsResult(DepositOperator::new, WithdrawOperator::new));
     }
 }

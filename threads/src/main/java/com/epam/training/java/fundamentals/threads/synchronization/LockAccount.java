@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class LockAccount implements Account {
     private int balance;
-    private Object lock;
+    private final Object lock;
 
     @Override
     public void deposit(int amount) {
@@ -24,8 +24,9 @@ public class LockAccount implements Account {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        //noinspection unchecked
         System.out.println(
                 new LockAccount(200, new Object())
-                        .getOperationsResult());
+                        .getOperationsResult(DepositOperator::new, WithdrawOperator::new));
     }
 }

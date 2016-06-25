@@ -6,6 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class BlockAccount implements Account {
+
     private int balance;
 
     @Override
@@ -21,9 +22,11 @@ public class BlockAccount implements Account {
             balance -= amount;
         }
     }
+
     public static void main(String[] args) throws InterruptedException {
+        //noinspection unchecked
         System.out.println(
                 new BlockAccount(200)
-                        .getOperationsResult());
+                        .getOperationsResult(DepositOperator::new, WithdrawOperator::new));
     }
 }
