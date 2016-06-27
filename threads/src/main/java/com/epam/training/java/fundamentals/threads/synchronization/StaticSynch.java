@@ -2,6 +2,7 @@ package com.epam.training.java.fundamentals.threads.synchronization;
 
 public class StaticSynch {
 
+    @SuppressWarnings("WeakerAccess")
     public static synchronized void a() {
         System.out.println("Line #1 in the method a");
         try {
@@ -12,6 +13,7 @@ public class StaticSynch {
         System.out.println("Line #2 in the method a");
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static synchronized void b() {
         System.out.println("Line #1 in the method b");
         try {

@@ -2,6 +2,7 @@ package serialization;
 
 import lombok.Data;
 
+@SuppressWarnings("WeakerAccess")
 @Data
 public class Person implements java.io.Serializable {
     private final String firstName;

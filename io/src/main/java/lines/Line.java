@@ -7,10 +7,7 @@ public class Line implements java.io.Serializable {
     private Point point2;
     private int index;
 
-    public Line() {
-        System.out.println("Constructing empty line");
-    }
-
+    @SuppressWarnings("WeakerAccess")
     public Line(Point p1, Point p2, int index) {
         System.out.println("Constructing line: "
                 + index);
@@ -22,9 +19,11 @@ public class Line implements java.io.Serializable {
     public int getIndex() {
         return index;
     }
+    @SuppressWarnings("WeakerAccess")
     public void setIndex(int newIndex) {
         index = newIndex;
     }
+    @SuppressWarnings("WeakerAccess")
     public void printInfo() {
         System.out.println("Line: " + index);
         System.out.println(" Object reference: "
@@ -63,4 +62,3 @@ public class Line implements java.io.Serializable {
         }
     }
 }
-

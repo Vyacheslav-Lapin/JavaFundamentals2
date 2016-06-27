@@ -1,9 +1,11 @@
 package lines;
 
+@SuppressWarnings("WeakerAccess")
 public class Point implements java.io.Serializable{
     private double x;
     private double y;
 
+    @SuppressWarnings("WeakerAccess")
     public Point(double x, double y) {
         this.x = x;
         this.y = y;

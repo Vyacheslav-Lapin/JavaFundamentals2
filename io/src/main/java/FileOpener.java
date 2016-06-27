@@ -9,6 +9,7 @@ public class FileOpener {
         javaSe7FileOpen();
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static void javaSe7FileOpen() {
         // JavaSE7+ style: try-with-resources
         try (PrintWriter pw = new PrintWriter(
@@ -21,6 +22,7 @@ public class FileOpener {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static void javaSe6FileOpen() {
         // JavaSE6 style
         PrintWriter pw = null;
