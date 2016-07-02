@@ -4,8 +4,13 @@ import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
-// ^\s{4}(\w+\s([^\s\(]+\([^\)]*\)) throws [^;]*);$
-// default $1 {\n        return toSrc().$2;\n    }
+
+/* ^\s{4}(\w+\s([^\s\(]+\([^\)]*\)) throws [^;]*);$
+       default $1 {\n        return toSrc().$2;\n    } */
+/* ^\s{8}return toSrc\(\)\.(\w+\()\w+ (\w+\);)
+           return toSrc().$1$2 */
+/* ^(\s{4}default void .*\n\s{8})return
+   $1 */
 public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
@@ -15,22 +20,22 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default PreparedStatement prepareStatement(String sql) throws SQLException {
-        return toSrc().prepareStatement(String sql);
+        return toSrc().prepareStatement(sql);
     }
 
     @Override
     default CallableStatement prepareCall(String sql) throws SQLException {
-        return toSrc().prepareCall(String sql);
+        return toSrc().prepareCall(sql);
     }
 
     @Override
     default String nativeSQL(String sql) throws SQLException {
-        return toSrc().nativeSQL(String sql);
+        return toSrc().nativeSQL(sql);
     }
 
     @Override
     default void setAutoCommit(boolean autoCommit) throws SQLException {
-        return toSrc().setAutoCommit(boolean autoCommit);
+        toSrc().setAutoCommit(autoCommit);
     }
 
     @Override
@@ -40,17 +45,17 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default void commit() throws SQLException {
-        return toSrc().commit();
+        toSrc().commit();
     }
 
     @Override
     default void rollback() throws SQLException {
-        return toSrc().rollback();
+        toSrc().rollback();
     }
 
     @Override
     default void close() throws SQLException {
-        return toSrc().close();
+        toSrc().close();
     }
 
     @Override
@@ -65,7 +70,7 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default void setReadOnly(boolean readOnly) throws SQLException {
-        return toSrc().setReadOnly(boolean readOnly);
+        toSrc().setReadOnly(readOnly);
     }
 
     @Override
@@ -75,7 +80,7 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default void setCatalog(String catalog) throws SQLException {
-        return toSrc().setCatalog(String catalog);
+        toSrc().setCatalog(catalog);
     }
 
     @Override
@@ -85,7 +90,7 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default void setTransactionIsolation(int level) throws SQLException {
-        return toSrc().setTransactionIsolation(int level);
+        toSrc().setTransactionIsolation(level);
     }
 
     @Override
@@ -100,22 +105,22 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default void clearWarnings() throws SQLException {
-        return toSrc().clearWarnings();
+        toSrc().clearWarnings();
     }
 
     @Override
     default Statement createStatement(int resultSetType, int resultSetConcurrency) throws SQLException {
-        return toSrc().createStatement(int resultSetType, int resultSetConcurrency);
+        return toSrc().createStatement(resultSetType, resultSetConcurrency);
     }
 
     @Override
     default PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
-        return toSrc().prepareStatement(String sql, int resultSetType, int resultSetConcurrency);
+        return toSrc().prepareStatement(sql, resultSetType, resultSetConcurrency);
     }
 
     @Override
     default CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
-        return toSrc().prepareCall(String sql, int resultSetType, int resultSetConcurrency);
+        return toSrc().prepareCall(sql, resultSetType, resultSetConcurrency);
     }
 
     @Override
@@ -130,7 +135,7 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default void setHoldability(int holdability) throws SQLException {
-        return toSrc().setHoldability(int holdability);
+        toSrc().setHoldability(holdability);
     }
 
     @Override
@@ -145,47 +150,47 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default Savepoint setSavepoint(String name) throws SQLException {
-        return toSrc().setSavepoint(String name);
+        return toSrc().setSavepoint(name);
     }
 
     @Override
     default void rollback(Savepoint savepoint) throws SQLException {
-        return toSrc().rollback(Savepoint savepoint);
+        toSrc().rollback(savepoint);
     }
 
     @Override
     default void releaseSavepoint(Savepoint savepoint) throws SQLException {
-        return toSrc().releaseSavepoint(Savepoint savepoint);
+        toSrc().releaseSavepoint(savepoint);
     }
 
     @Override
     default Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-        return toSrc().createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability);
+        return toSrc().createStatement(resultSetType, resultSetConcurrency, resultSetHoldability);
     }
 
     @Override
     default PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-        return toSrc().prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability);
+        return toSrc().prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
     }
 
     @Override
     default CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-        return toSrc().prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability);
+        return toSrc().prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
     }
 
     @Override
     default PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) throws SQLException {
-        return toSrc().prepareStatement(String sql, int autoGeneratedKeys);
+        return toSrc().prepareStatement(sql, autoGeneratedKeys);
     }
 
     @Override
     default PreparedStatement prepareStatement(String sql, int[] columnIndexes) throws SQLException {
-        return toSrc().prepareStatement(String sql, int[] columnIndexes);
+        return toSrc().prepareStatement(sql, columnIndexes);
     }
 
     @Override
     default PreparedStatement prepareStatement(String sql, String[] columnNames) throws SQLException {
-        return toSrc().prepareStatement(String sql, String[] columnNames);
+        return toSrc().prepareStatement(sql, columnNames);
     }
 
     @Override
@@ -210,22 +215,22 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default boolean isValid(int timeout) throws SQLException {
-        return toSrc().isValid(int timeout);
+        return toSrc().isValid(timeout);
     }
 
     @Override
     default void setClientInfo(String name, String value) throws SQLClientInfoException {
-        return toSrc().setClientInfo(String name, String value);
+        toSrc().setClientInfo(name, value);
     }
 
     @Override
     default void setClientInfo(Properties properties) throws SQLClientInfoException {
-        return toSrc().setClientInfo(Properties properties);
+        toSrc().setClientInfo(properties);
     }
 
     @Override
     default String getClientInfo(String name) throws SQLException {
-        return toSrc().getClientInfo(String name);
+        return toSrc().getClientInfo(name);
     }
 
     @Override
@@ -235,17 +240,17 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default Array createArrayOf(String typeName, Object[] elements) throws SQLException {
-        return toSrc().createArrayOf(String typeName, Object[] elements);
+        return toSrc().createArrayOf(typeName, elements);
     }
 
     @Override
     default Struct createStruct(String typeName, Object[] attributes) throws SQLException {
-        return toSrc().createStruct(String typeName, Object[] attributes);
+        return toSrc().createStruct(typeName, attributes);
     }
 
     @Override
     default void setSchema(String schema) throws SQLException {
-        return toSrc().setSchema(String schema);
+        toSrc().setSchema(schema);
     }
 
     @Override
@@ -255,12 +260,12 @@ public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
     default void abort(Executor executor) throws SQLException {
-        return toSrc().abort(Executor executor);
+        toSrc().abort(executor);
     }
 
     @Override
     default void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
-        return toSrc().setNetworkTimeout(Executor executor, int milliseconds);
+        toSrc().setNetworkTimeout(executor, milliseconds);
     }
 
     @Override
