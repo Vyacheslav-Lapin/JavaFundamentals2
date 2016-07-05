@@ -1,14 +1,17 @@
 package com.epam.trainings.java.fundamentals.jdbc.cp;
 
+
+import com.epam.courses.jf.common.Wrapper;
+
 import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-/* ^\s{4}(\w+\s([^\s\(]+\([^\)]*\)) throws [^;]*);$
-       default $1 {\n        return toSrc().$2;\n    } */
-/* ^\s{8}return toSrc\(\)\.(\w+\()\w+ (\w+\);)
-           return toSrc().$1$2 */
+/* "^\s{4}(\w+\s([^\s\(]+\([^\)]*\)) throws [^;]*);$"
+   "    default $1 {\n        return toSrc().$2;\n    }" */
+/* "^\s{8}return toSrc\(\)\.(\w+\()\w+ (\w+\);)"
+   "        return toSrc().$1$2" */
 /* ^(\s{4}default void .*\n\s{8})return
    $1 */
 public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
