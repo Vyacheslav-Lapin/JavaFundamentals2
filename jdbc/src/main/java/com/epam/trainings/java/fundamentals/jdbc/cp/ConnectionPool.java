@@ -101,7 +101,7 @@ public interface ConnectionPool extends AutoCloseable {
             @Override
             public void close() throws Exception {
                 for (int i = 0; i < poolSize; i++)
-                    ((PooledConnection) freeConnections.take()).reallyClose();
+                    ((PooledConnection) freeConnections.take()).toSrc().close();
             }
         };
     }
