@@ -9,19 +9,24 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static com.epam.courses.jf.common.PropertyMap.getAndRemove;
 import static java.lang.Integer.parseInt;
 
+//@FunctionalInterface
 public interface ConnectionPool {
 
     BlockingQueue<Connection> getConnectionQueue();
+
     Collection<Connection> getGivenAwayConQueue();
 
     static ConnectionPool create(String dbPropertiesFilePath) {
@@ -91,8 +96,12 @@ public interface ConnectionPool {
     default void executeScript(Path path) {
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement()) {
+
             final String[] sqls = Files.lines(path)
                     .collect(Collectors.joining()).split(";");
+//            Stream.of(Files.lines(path)
+//                    .collect(Collectors.joining()))
+//                    .flatMap(s -> Stream.of(s.split(";")));
 
             Arrays.stream(sqls)
                     .forEach(s -> {
@@ -118,12 +127,17 @@ public interface ConnectionPool {
         ReflectUtils.loadClass(getAndRemove(properties, "driver"), "Can't find database driver class");
 
         BlockingQueue<Connection> freeConnections = new ArrayBlockingQueue<>(poolSize);
+        Collection<Connection> takenConnections = new HashSet<>(poolSize);
+
         freeConnections.addAll(
-                IntStream.range(0, poolSize)
-                        .mapToObj(value -> createConnection(url, properties))
+                Stream.generate(() -> createConnection(url, properties, freeConnections, takenConnections))
+                        .limit(poolSize)
                         .collect(Collectors.toSet()));
 
-        Collection<Connection> takenConnections = new HashSet<>(poolSize);
+//        Set<Connection> connections = new HashSet<>();
+//        for (int i=0; i < poolSize; i++)
+//            connections.add(createConnection(url, properties));
+//        freeConnections.addAll(connections);
 
         return new ConnectionPool() {
             @Override
@@ -139,9 +153,15 @@ public interface ConnectionPool {
     }
 
     @Private
-    static Connection createConnection(String url, Properties properties) {
+    static Connection createConnection(String url,
+                                       Properties properties,
+                                       BlockingQueue<Connection> freeConnections,
+                                       Collection<Connection> takenConnections) {
         try {
-            return DriverManager.getConnection(url, properties);
+            return new PooledConnection(
+                    DriverManager.getConnection(url, properties),
+                    freeConnections,
+                    takenConnections);
         } catch (SQLException e) {
             throw new RuntimeException("SQLException in ConnectionPoolFactory", e);
         }
