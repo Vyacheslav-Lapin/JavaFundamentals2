@@ -111,7 +111,7 @@ public interface ConnectionPool extends AutoCloseable {
                                        Properties properties,
                                        BlockingQueue<Connection> freeConnections) {
         try {
-            return PooledConnection.create(DriverManager.getConnection(url, properties), freeConnections);
+            return PooledConnection.create(DriverManager.getConnection(url, properties), freeConnections::offer);
         } catch (SQLException e) {
             throw new RuntimeException("SQLException in ConnectionPoolFactory", e);
         }
