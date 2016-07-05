@@ -22,6 +22,7 @@ import java.util.stream.Stream;
 import static com.epam.courses.jf.common.PropertyMap.getAndRemove;
 import static java.lang.Integer.parseInt;
 
+@SuppressWarnings("WeakerAccess")
 public interface ConnectionPool extends AutoCloseable {
 
     BlockingQueue<Connection> getConnectionQueue();
@@ -58,10 +59,10 @@ public interface ConnectionPool extends AutoCloseable {
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement()) {
 
-            final String[] sqls = Files.lines(path)
+            final String[] sqlExpressions = Files.lines(path)
                     .collect(Collectors.joining()).split(";");
 
-            Arrays.stream(sqls)
+            Arrays.stream(sqlExpressions)
                     .forEach(s -> {
                         try {
                             statement.addBatch(s);

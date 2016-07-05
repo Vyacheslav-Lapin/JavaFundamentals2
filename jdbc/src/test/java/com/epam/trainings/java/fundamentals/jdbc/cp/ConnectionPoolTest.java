@@ -18,7 +18,7 @@ public class ConnectionPoolTest {
     private static final String DB_PROPERTIES_FILE_NAME = "db.properties";
     private static final String DB_PREPARE_FILE_NAME = "h2.sql";
 
-    static ConnectionPool connectionPool;
+    private static ConnectionPool connectionPool;
 
     @BeforeClass
     public static void init() {

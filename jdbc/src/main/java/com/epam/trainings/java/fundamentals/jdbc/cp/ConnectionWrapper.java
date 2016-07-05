@@ -12,8 +12,9 @@ import java.util.concurrent.Executor;
    "    default $1 {\n        return toSrc().$2;\n    }" */
 /* "^\s{8}return toSrc\(\)\.(\w+\()\w+ (\w+\);)"
    "        return toSrc().$1$2" */
-/* ^(\s{4}default void .*\n\s{8})return
-   $1 */
+/* "^(\s{4}default void .*\n\s{8})return "
+   "$1" */
+@SuppressWarnings("WeakerAccess")
 public interface ConnectionWrapper extends Connection, Wrapper<Connection> {
 
     @Override
