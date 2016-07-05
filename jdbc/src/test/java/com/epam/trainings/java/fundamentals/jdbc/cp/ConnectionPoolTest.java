@@ -1,5 +1,6 @@
 package com.epam.trainings.java.fundamentals.jdbc.cp;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -35,5 +36,14 @@ public class ConnectionPoolTest {
             assertThat(connectionPool.size(), is(4));
         }
         assertThat(connectionPool.size(), is(5));
+    }
+
+    @AfterClass
+    public static void destroy() {
+        try {
+            connectionPool.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
