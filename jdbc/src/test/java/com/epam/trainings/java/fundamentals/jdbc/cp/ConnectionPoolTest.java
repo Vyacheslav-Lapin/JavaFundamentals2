@@ -20,7 +20,7 @@ public class ConnectionPoolTest {
     static ConnectionPool connectionPool;
 
     @BeforeClass
-    public static void init() throws ConnectionPoolException {
+    public static void init() {
         connectionPool = ConnectionPool.create(RESOURCES_FILE_PATH + DB_PROPERTIES_FILE_NAME);
         connectionPool.executeScript(RESOURCES_FILE_PATH + DB_PREPARE_FILE_NAME);
     }
@@ -32,6 +32,8 @@ public class ConnectionPoolTest {
              ResultSet resultSet = statement.executeQuery("SELECT name FROM Gun WHERE id = 1")) {
             assertTrue(resultSet.next());
             assertThat(resultSet.getString(1), is("Kolt"));
+            assertThat(connectionPool.size(), is(4));
         }
+        assertThat(connectionPool.size(), is(5));
     }
 }
